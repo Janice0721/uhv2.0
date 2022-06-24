@@ -4810,3 +4810,13 @@ org.apache.shiro.authc.AuthenticationException: Token失效，请重新登录!
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.lang.Thread.run(Thread.java:750)
 2022-06-24 16:05:25.163 [http-nio-8080-exec-4] INFO  o.jeecg.modules.system.controller.LoginController:140 -  用户名:  管理员,退出成功！ 
+2022-06-24 16:33:12.122 [SpringContextShutdownHook] INFO  org.quartz.core.QuartzScheduler:585 - Scheduler MyScheduler_$_SSKJ、1656051728802 paused.
+2022-06-24 16:33:12.735 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor:218 - Shutting down ExecutorService 'jmReportTaskExecutor'
+2022-06-24 16:33:12.762 [SpringContextShutdownHook] INFO  o.s.scheduling.quartz.SchedulerFactoryBean:845 - Shutting down Quartz Scheduler
+2022-06-24 16:33:12.763 [SpringContextShutdownHook] INFO  org.quartz.core.QuartzScheduler:666 - Scheduler MyScheduler_$_SSKJ、1656051728802 shutting down.
+2022-06-24 16:33:12.763 [SpringContextShutdownHook] INFO  org.quartz.core.QuartzScheduler:585 - Scheduler MyScheduler_$_SSKJ、1656051728802 paused.
+2022-06-24 16:33:12.771 [SpringContextShutdownHook] INFO  org.quartz.core.QuartzScheduler:740 - Scheduler MyScheduler_$_SSKJ、1656051728802 shutdown complete.
+2022-06-24 16:33:12.796 [SpringContextShutdownHook] INFO  c.b.dynamic.datasource.DynamicRoutingDataSource:217 - dynamic-datasource start closing ....
+2022-06-24 16:33:12.851 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource:2029 - {dataSource-1} closing ...
+2022-06-24 16:33:12.951 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource:2101 - {dataSource-1} closed
+2022-06-24 16:33:12.953 [SpringContextShutdownHook] INFO  c.b.dynamic.datasource.DynamicRoutingDataSource:221 - dynamic-datasource all closed success,bye
