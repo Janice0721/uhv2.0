@@ -1,0 +1,6 @@
+spring:
+  application:
+    # Updater: SanShi
+    name: sanshi-system
+  profiles:
+    active: dev
