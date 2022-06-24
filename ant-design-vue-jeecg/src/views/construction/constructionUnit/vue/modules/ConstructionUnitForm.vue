@@ -2,17 +2,17 @@
   <a-spin :spinning="confirmLoading">
     <j-form-container :disabled="formDisabled">
       <a-form-model ref="form" :model="model" :rules="validatorRules" slot="detail">
-        <a-row>
+        <a-row v-for="fl in formList">
           <a-col :span="24">
-            <a-form-model-item label="施工单位(全称)" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="name">
-              <a-input v-model="model.name" placeholder="请输入施工单位(全称)"  ></a-input>
+            <a-form-model-item :label="fl.text" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="fl.key">
+              <a-input v-model="model.name" :placeholder="'请输入'+fl.text"  ></a-input>
             </a-form-model-item>
           </a-col>
-          <a-col :span="24">
+          <!-- <a-col :span="24">
             <a-form-model-item label="详细信息" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="detail">
               <a-input v-model="model.detail" placeholder="请输入详细信息"  ></a-input>
             </a-form-model-item>
-          </a-col>
+          </a-col> -->
         </a-row>
       </a-form-model>
     </j-form-container>
@@ -38,6 +38,7 @@
     },
     data () {
       return {
+        formList:"",
         model:{
          },
         labelCol: {
@@ -66,6 +67,9 @@
     created () {
        //备份model原始值
       this.modelDefault = JSON.parse(JSON.stringify(this.model));
+      getAction('/constructionUnit/constructionUnit/getFormList').then(res=>{
+        this.formList=res
+      })
     },
     methods: {
       add () {
