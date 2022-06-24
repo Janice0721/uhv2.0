@@ -179,17 +179,17 @@ public class ConstructionUnitController extends JeecgController<ConstructionUnit
 	  */
 	 @RequestMapping("/getFormList")
 	 public String getFormList(){
-//		List<Map<String,String>> listMap=new ArrayList<>();
-//		Map<String,String> map =new HashMap<>();
-//		Map<String,String> map1 =new HashMap<>();
-//		map.put("key","test");
-//		map.put("text","测试字段");
-//		listMap.add(map);
-//		 map1.put("key","name");
-//		 map1.put("text","施工单位");
-//		 listMap.add(map1);
-//		 String s =  JSON.toJSONString(listMap);
-//		 return s;
-		 return null;
+		List<Map<String,String>> listMap=new ArrayList<>();
+		Map<String,String> map =new HashMap<>();
+		Map<String,String> map1 =new HashMap<>();
+		map.put("key","test");
+		map.put("text","测试字段");
+		listMap.add(map);
+		 map1.put("key","name");
+		 map1.put("text","施工单位");
+		 listMap.add(map1);
+		 String s =  JSON.toJSONString(listMap);
+		 return s;
+//		 return null;
 	 }
  }
