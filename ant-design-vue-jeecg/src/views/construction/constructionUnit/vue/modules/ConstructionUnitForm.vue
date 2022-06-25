@@ -67,7 +67,7 @@
     created () {
        //备份model原始值
       this.modelDefault = JSON.parse(JSON.stringify(this.model));
-      getAction('/constructionUnit/constructionUnit/getFormList').then(res=>{
+      getAction('/getFormList?table_name=construction_unit').then(res=>{
         this.formList=res
       })
     },
