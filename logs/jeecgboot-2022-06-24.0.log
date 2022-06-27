@@ -4978,3 +4978,17 @@ org.apache.shiro.authc.AuthenticationException: Token失效，请重新登录!
  Note: further occurrences of this error will be logged at DEBUG level.
 2022-06-24 17:04:38.668 [http-nio-8080-exec-6] INFO  org.jeecg.modules.message.websocket.WebSocket:57 - 【websocket消息】有新的连接，总数为:1
 2022-06-24 17:04:42.048 [http-nio-8080-exec-4] INFO  org.jeecg.common.system.query.QueryGenerator:227 - 排序规则>>列:createTime,排序方式:desc
+2022-06-24 17:15:14.013 [http-nio-8080-exec-8] INFO  org.jeecg.modules.message.websocket.WebSocket:67 - 【websocket消息】连接断开，总数为:0
+2022-06-24 17:15:17.839 [http-nio-8080-exec-1] INFO  org.jeecg.modules.message.websocket.WebSocket:57 - 【websocket消息】有新的连接，总数为:1
+2022-06-24 17:15:17.900 [http-nio-8080-exec-4] INFO  org.jeecg.common.system.query.QueryGenerator:227 - 排序规则>>列:createTime,排序方式:desc
+2022-06-24 18:02:51.475 [SpringContextShutdownHook] INFO  org.quartz.core.QuartzScheduler:585 - Scheduler MyScheduler_$_SSKJ、1656061419999 paused.
+2022-06-24 18:02:51.585 [SpringContextShutdownHook] INFO  org.jeecg.modules.message.websocket.WebSocket:67 - 【websocket消息】连接断开，总数为:0
+2022-06-24 18:02:51.635 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor:218 - Shutting down ExecutorService 'jmReportTaskExecutor'
+2022-06-24 18:02:51.639 [SpringContextShutdownHook] INFO  o.s.scheduling.quartz.SchedulerFactoryBean:845 - Shutting down Quartz Scheduler
+2022-06-24 18:02:51.639 [SpringContextShutdownHook] INFO  org.quartz.core.QuartzScheduler:666 - Scheduler MyScheduler_$_SSKJ、1656061419999 shutting down.
+2022-06-24 18:02:51.639 [SpringContextShutdownHook] INFO  org.quartz.core.QuartzScheduler:585 - Scheduler MyScheduler_$_SSKJ、1656061419999 paused.
+2022-06-24 18:02:51.640 [SpringContextShutdownHook] INFO  org.quartz.core.QuartzScheduler:740 - Scheduler MyScheduler_$_SSKJ、1656061419999 shutdown complete.
+2022-06-24 18:02:51.646 [SpringContextShutdownHook] INFO  c.b.dynamic.datasource.DynamicRoutingDataSource:217 - dynamic-datasource start closing ....
+2022-06-24 18:02:51.662 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource:2029 - {dataSource-1} closing ...
+2022-06-24 18:02:51.670 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource:2101 - {dataSource-1} closed
+2022-06-24 18:02:51.670 [SpringContextShutdownHook] INFO  c.b.dynamic.datasource.DynamicRoutingDataSource:221 - dynamic-datasource all closed success,bye

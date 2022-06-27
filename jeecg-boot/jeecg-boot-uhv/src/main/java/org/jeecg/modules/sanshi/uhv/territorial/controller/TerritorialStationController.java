@@ -1,8 +1,10 @@
 package org.jeecg.modules.sanshi.uhv.territorial.controller;
 
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.jeecg.common.api.vo.Result;
 import org.jeecg.common.system.query.QueryGenerator;
 import org.jeecg.common.util.oConvertUtils;
+import org.jeecg.modules.sanshi.uhv.common.AddFunc;
 import org.jeecg.modules.sanshi.uhv.territorial.entity.TerritorialStation;
 import org.jeecg.modules.sanshi.uhv.territorial.service.ITerritorialStationService;
 
@@ -82,8 +85,10 @@ public class TerritorialStationController extends JeecgController<TerritorialSta
 	@AutoLog(value = "属地供电所-添加")
 	@ApiOperation(value="属地供电所-添加", notes="属地供电所-添加")
 	@PostMapping(value = "/add")
-	public Result<?> add(@RequestBody TerritorialStation territorialStation) {
-		territorialStationService.save(territorialStation);
+	public Result<?> add(@RequestBody String territorialStation,@RequestParam("table_name")String table_name) throws SQLException {
+		AddFunc addFunc=new AddFunc();
+		addFunc.INSERT(territorialStation,table_name);
+		//	territorialStationService.save(territorialStation);
 		return Result.OK("添加成功！");
 	}
 	

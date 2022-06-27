@@ -10,13 +10,13 @@
     cancelText="关闭">
     <a-spin :spinning="confirmLoading">
       <a-form-model ref="form" :model="model" :rules="validatorRules">
-        <a-row>
+        <a-row v-for="form in formList">
           <a-col :span="24">
-            <a-form-model-item label="杆塔id" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="towerId">
-              <a-input v-model="model.towerId"placeholder="请输入杆塔id" ></a-input>
+            <a-form-model-item :label="form.text" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="form.key">
+              <a-input v-model="model[form.key]" :placeholder="'请输入'+form.text"  ></a-input>
             </a-form-model-item>
           </a-col>
-          <a-col :span="24">
+          <!-- <a-col :span="24">
             <a-form-model-item label="塔基林木采伐证办理情况" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="registration">
               <a-input v-model="model.registration"placeholder="请输入塔基林木采伐证办理情况" ></a-input>
             </a-form-model-item>
@@ -180,7 +180,7 @@
             <a-form-model-item label="填报时间" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="fillingTime">
               <a-input v-model="model.fillingTime"placeholder="请输入填报时间" ></a-input>
             </a-form-model-item>
-          </a-col>
+          </a-col> -->
         </a-row>
       </a-form-model>
     </a-spin>
@@ -205,6 +205,7 @@
     },
     data () {
       return {
+        formList: [],
         title:"操作",
         width:800,
         visible: false,
@@ -223,7 +224,7 @@
         validatorRules: {
         },
         url: {
-          add: "/tower/tower/addTerritorialMessage",
+          add: "/tower/tower/addTerritorialMessage?table_name=territorial_message",
           edit: "/tower/tower/editTerritorialMessage",
         }
 
@@ -231,7 +232,15 @@
     },
     created () {
     //备份model原始值
-      this.modelDefault = JSON.parse(JSON.stringify(this.model));
+      // this.modelDefault = JSON.parse(JSON.stringify(this.model));
+       getAction('/getFormList?table_name=territorial_message').then(res=>{
+        this.formList=res;
+      })
+      let params = {}
+        for(let obj of this.formList){
+          params[obj.key] = '';
+        }
+        this.model = Object.assign({}, params);
     },
     methods: {
       add () {

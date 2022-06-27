@@ -5,7 +5,7 @@
         <a-row v-for="form in formList">
           <a-col :span="24">
             <a-form-model-item :label="form.text" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="form.key">
-              <a-input v-model="model.name" :placeholder="'请输入'+form.text"  ></a-input>
+              <a-input v-model="model[form.key]" :placeholder="'请输入'+form.text"  ></a-input>
             </a-form-model-item>
           </a-col>
           <!-- <a-col :span="24">
@@ -38,7 +38,7 @@
     },
     data () {
       return {
-        formList:"",
+        formList: [],
         model:{
          },
         labelCol: {
@@ -53,7 +53,7 @@
         validatorRules: {
         },
         url: {
-          add: "/territorial/territorialStation/add",
+          add: "/territorial/territorialStation/add?table_name=territorial_station",
           edit: "/territorial/territorialStation/edit",
           queryById: "/territorial/territorialStation/queryById"
         }
@@ -66,9 +66,14 @@
     },
     created () {
        //备份model原始值
-      this.modelDefault = JSON.parse(JSON.stringify(this.model));
+      // this.modelDefault = JSON.parse(JSON.stringify(this.model));
       getAction('/getFormList?table_name=territorial_station').then(res=>{
         this.formList=res
+        let params = {}
+        for(let obj of this.formList){
+          params[obj.key] = '';
+        }
+        this.model = Object.assign({}, params);
       })
     },
     methods: {

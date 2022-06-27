@@ -10,7 +10,13 @@
     cancelText="关闭">
     <a-spin :spinning="confirmLoading">
       <a-form-model ref="form" :model="model" :rules="validatorRules">
-        <a-row>
+      <a-row v-for="form in formList">
+          <a-col :span="24">
+            <a-form-model-item :label="form.text" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="form.key">
+              <a-input v-model="model[form.key]" :placeholder="'请输入'+form.text"  ></a-input>
+            </a-form-model-item>
+          </a-col>
+        <!-- 
           <a-col :span="24">
             <a-form-model-item label="杆塔id" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="towerId">
               <a-input v-model="model.towerId"placeholder="请输入杆塔id" ></a-input>
@@ -88,14 +94,14 @@
           </a-col>
           <a-col :span="24">
             <a-form-model-item label="其他需要说明的问题" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="otherIssue">
-              <a-input v-model="model.otherIssue"placeholder="请输入其他需要说明的问题" ></a-input>
+              <a-input v-model="model.otherIssue" placeholder="请输入其他需要说明的问题" ></a-input>
             </a-form-model-item>
           </a-col>
           <a-col :span="24">
             <a-form-model-item label="填报时间" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="reportTime">
               <j-date placeholder="请选择填报时间" v-model="model.reportTime" style="width: 100%" />
             </a-form-model-item>
-          </a-col>
+          </a-col> -->
         </a-row>
       </a-form-model>
     </a-spin>
@@ -120,6 +126,7 @@
     },
     data () {
       return {
+        formList: [],
         title:"操作",
         width:800,
         visible: false,
@@ -138,7 +145,7 @@
         validatorRules: {
         },
         url: {
-          add: "/tower/tower/addConstructionMessage",
+          add: "/tower/tower/addConstructionMessage?table_name=construction_message",
           edit: "/tower/tower/editConstructionMessage",
         }
 
@@ -146,7 +153,15 @@
     },
     created () {
     //备份model原始值
-      this.modelDefault = JSON.parse(JSON.stringify(this.model));
+      // this.modelDefault = JSON.parse(JSON.stringify(this.model));
+      getAction('/getFormList?table_name=construction_message').then(res=>{
+        this.formList=res;
+      })
+      let params = {}
+        for(let obj of this.formList){
+          params[obj.key] = '';
+        }
+        this.model = Object.assign({}, params);
     },
     methods: {
       add () {
