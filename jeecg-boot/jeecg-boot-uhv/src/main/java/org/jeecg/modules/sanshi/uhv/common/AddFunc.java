@@ -31,9 +31,9 @@ public class AddFunc {
         String id= String.valueOf(UUID.randomUUID());
         String create_by="admin";
         String create_time= DateTime.now().toString();
-        String s="insert into "+table_name+"(id,create_by,create_time";
+        String s="insert into "+table_name+"(id,create_by,create_time,";
         String s1="";
-        String s2=")values('"+id+",'"+create_by+",'"+create_time+"',";
+        String s2=")values('"+id+"','"+create_by+"','"+create_time+"',";
         String s3="";
         String s4=")";
         for(String key:map.keySet()){

@@ -1,6 +1,7 @@
 package org.jeecg.modules.sanshi.uhv.constructionUnit.controller;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.io.IOException;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.jeecg.common.api.vo.Result;
 import org.jeecg.common.system.query.QueryGenerator;
 import org.jeecg.common.util.oConvertUtils;
+import org.jeecg.modules.sanshi.uhv.common.AddFunc;
 import org.jeecg.modules.sanshi.uhv.constructionUnit.entity.ConstructionUnit;
 import org.jeecg.modules.sanshi.uhv.constructionUnit.service.IConstructionUnitService;
 
@@ -83,13 +85,10 @@ public class ConstructionUnitController extends JeecgController<ConstructionUnit
 	@AutoLog(value = "施工单位-添加")
 	@ApiOperation(value="施工单位-添加", notes="施工单位-添加")
 	@PostMapping(value = "/add")
-	public Result<?> add(@RequestBody ConstructionUnit constructionUnit) {
-		constructionUnitService.save(constructionUnit);
-//		System.out.println(constructionUnit);
-//		Map<String,String > constructionMap = JSON.parseObject(constructionUnit, Map.class);
-//		System.out.println(map);
-//		insert into construction_unit(id,test,name,detail) values(null,'1','2','3')
-
+	public Result<?> add(@RequestBody String constructionUnit,@RequestParam("table_name")String table_name) throws SQLException {
+//		constructionUnitService.save(constructionUnit);
+		AddFunc addFunc=new AddFunc();
+		addFunc.INSERT(constructionUnit,table_name);
 		return Result.OK("添加成功！");
 	}
 	

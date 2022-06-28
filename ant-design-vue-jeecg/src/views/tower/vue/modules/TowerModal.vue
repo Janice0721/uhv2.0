@@ -96,7 +96,6 @@ import { getAction } from '../../../../api/manage'
     },
     created () {
     //备份model原始值
-      // this.modelDefault = JSON.parse(JSON.stringify(this.model));
       getAction('/getFormList?table_name=tower').then(res=>{
         this.formList=res;
       })

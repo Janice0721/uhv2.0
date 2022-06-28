@@ -7,11 +7,14 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.jeecg.common.system.base.controller.JeecgController;
 import org.jeecg.common.api.vo.Result;
+import org.jeecg.modules.sanshi.uhv.common.AddFunc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.sql.SQLException;
 import java.util.Arrays;
 import org.jeecg.common.util.oConvertUtils;
 import org.jeecg.modules.sanshi.uhv.tower.entity.TerritorialMessage;
@@ -90,8 +93,10 @@ public class TowerController extends JeecgController<Tower, ITowerService> {
     @AutoLog(value = "塔杆信息-添加")
     @ApiOperation(value="塔杆信息-添加", notes="塔杆信息-添加")
     @PostMapping(value = "/add")
-    public Result<?> add(@RequestBody Tower tower) {
-        towerService.save(tower);
+    public Result<?> add(@RequestBody String tower,@RequestParam("table_name")String table_name) throws SQLException {
+//        towerService.save(tower);
+		AddFunc addFunc=new AddFunc();
+		addFunc.INSERT(tower,table_name);
         return Result.OK("添加成功！");
     }
 
@@ -180,8 +185,9 @@ public class TowerController extends JeecgController<Tower, ITowerService> {
 	@AutoLog(value = "属地供电所填报-添加")
 	@ApiOperation(value="属地供电所填报-添加", notes="属地供电所填报-添加")
 	@PostMapping(value = "/addTerritorialMessage")
-	public Result<?> addTerritorialMessage(@RequestBody TerritorialMessage territorialMessage) {
-		territorialMessageService.save(territorialMessage);
+	public Result<?> addTerritorialMessage(@RequestBody String territorialMessage,@RequestParam("table_name")String table_name) throws SQLException {
+		AddFunc addFunc=new AddFunc();
+		addFunc.INSERT(territorialMessage,table_name);
 		return Result.OK("添加成功！");
 	}
 
@@ -321,8 +327,9 @@ public class TowerController extends JeecgController<Tower, ITowerService> {
 	@AutoLog(value = "施工填报-添加")
 	@ApiOperation(value="施工填报-添加", notes="施工填报-添加")
 	@PostMapping(value = "/addConstructionMessage")
-	public Result<?> addConstructionMessage(@RequestBody ConstructionMessage constructionMessage) {
-		constructionMessageService.save(constructionMessage);
+	public Result<?> addConstructionMessage(@RequestBody String constructionMessage,@RequestParam("table_name")String table_name) throws SQLException {
+		AddFunc addFunc=new AddFunc();
+		addFunc.INSERT(constructionMessage,table_name);
 		return Result.OK("添加成功！");
 	}
 

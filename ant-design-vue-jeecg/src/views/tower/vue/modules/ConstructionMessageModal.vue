@@ -110,7 +110,7 @@
 
 <script>
 
-  import { httpAction } from '@/api/manage'
+  import { httpAction ,getAction} from '@/api/manage'
   import { validateDuplicateValue } from '@/utils/util'
 
   export default {
