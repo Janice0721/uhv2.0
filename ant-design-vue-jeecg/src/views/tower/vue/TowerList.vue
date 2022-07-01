@@ -131,23 +131,14 @@
             align:"center",
             dataIndex: 'ascriptionTown'
           },
+          
           {
-            title:'N坐标N/X(米)',
-            align:"center",
-            dataIndex: 'coordinateN'
-          },
-          {
-            title:'E坐标E/Y(米)',
-            align:"center",
-            dataIndex: 'coordinateB'
-          },
-          {
-            title:'属地供电所id',
+            title:'属地供电所',
             align:"center",
             dataIndex: 'territorialId'
           },
           {
-            title:'施单位（全称）',
+            title:'施工单位（全称）',
             align:"center",
             dataIndex: 'constructionUnit'
           },

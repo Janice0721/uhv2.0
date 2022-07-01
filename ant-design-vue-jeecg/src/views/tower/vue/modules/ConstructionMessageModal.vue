@@ -157,11 +157,12 @@
       getAction('/getFormList?table_name=construction_message').then(res=>{
         this.formList=res;
       })
-      let params = {}
-        for(let obj of this.formList){
-          params[obj.key] = '';
-        }
-        this.model = Object.assign({}, params);
+      // let params = {}
+      //   for(let obj of this.formList){
+      //     params[obj.key] = '';
+      //   }
+      //   this.model = Object.assign({}, params);
+      this.modelDefault = JSON.parse(JSON.stringify(this.model))
     },
     methods: {
       add () {

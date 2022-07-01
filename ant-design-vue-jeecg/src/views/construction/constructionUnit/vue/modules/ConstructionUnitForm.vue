@@ -67,12 +67,13 @@
     created () {
       getAction('/getFormList?table_name=construction_unit',).then(res=>{
         this.formList=res;
-        let params = {}
-        for(let obj of this.formList){
-          params[obj.key] = '';
-        }
-        this.model = Object.assign({}, params);
+        // let params = {}
+        // for(let obj of this.formList){
+        //   params[obj.key] = '';
+        // }
+        // this.model = Object.assign({}, params);
       })
+      this.modelDefault = JSON.parse(JSON.stringify(this.model))
       
       
     },
@@ -81,7 +82,9 @@
          this.edit(this.modelDefault);
       },
       edit (record) {
+        // alert(Object.assign({}, record))
         this.model = Object.assign({}, record);
+        // alert(this.model)
         this.visible = true;
       },
       submitForm () {

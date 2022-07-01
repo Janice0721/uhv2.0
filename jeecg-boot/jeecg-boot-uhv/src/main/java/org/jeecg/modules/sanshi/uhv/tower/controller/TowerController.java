@@ -419,6 +419,7 @@ public class TowerController extends JeecgController<Tower, ITowerService> {
 			 params.setHeadRows(1);
 			 params.setNeedSave(true);
 			 try {
+
 				 List<ConstructionMessage> list = ExcelImportUtil.importExcel(file.getInputStream(), ConstructionMessage.class, params);
 				 for (ConstructionMessage temp : list) {
                     temp.setTowerId(mainId);
