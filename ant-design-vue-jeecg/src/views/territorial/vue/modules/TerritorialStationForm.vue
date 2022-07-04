@@ -1,18 +1,13 @@
 <template>
   <a-spin :spinning="confirmLoading">
     <j-form-container :disabled="formDisabled">
-      <a-form-model ref="form" :model="model" :rules="validatorRules" slot="detail">
+      <a-form-model ref="form" :model="model" :rules="validatorRules" slot="detail" key="0">
         <a-row v-for="form in formList">
           <a-col :span="24">
-            <a-form-model-item :label="form.text" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="form.key">
+            <a-form-model-item :label="form.text" :labelCol="labelCol" :wrapperCol="wrapperCol" :prop="form.key">
               <a-input v-model="model[form.key]" :placeholder="'请输入'+form.text"  ></a-input>
             </a-form-model-item>
           </a-col>
-          <!-- <a-col :span="24">
-            <a-form-model-item label="备注" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="detail">
-              <a-input v-model="model.detail" placeholder="请输入备注"  ></a-input>
-            </a-form-model-item>
-          </a-col> -->
         </a-row>
       </a-form-model>
     </j-form-container>
@@ -54,7 +49,7 @@
         },
         url: {
           add: "/territorial/territorialStation/add?table_name=territorial_station",
-          edit: "/territorial/territorialStation/edit",
+          edit: "/territorial/territorialStation/edit?table_name=territorial_station",
           queryById: "/territorial/territorialStation/queryById"
         }
       }

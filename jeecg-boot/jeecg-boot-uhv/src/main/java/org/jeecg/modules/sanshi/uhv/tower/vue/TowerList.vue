@@ -132,17 +132,7 @@
             dataIndex: 'ascriptionTown'
           },
           {
-            title:'N坐标N/X(米)',
-            align:"center",
-            dataIndex: 'coordinateN'
-          },
-          {
-            title:'E坐标E/Y(米)',
-            align:"center",
-            dataIndex: 'coordinateB'
-          },
-          {
-            title:'属地供电所id',
+            title:'属地供电所',
             align:"center",
             dataIndex: 'territorialId'
           },
@@ -248,9 +238,7 @@
         fieldList.push({type:'string',value:'number',text:'杆塔号',dictCode:''})
         fieldList.push({type:'string',value:'address',text:'塔地址',dictCode:''})
         fieldList.push({type:'string',value:'ascriptionTown',text:'交界塔基归属乡镇',dictCode:''})
-        fieldList.push({type:'string',value:'coordinateN',text:'N坐标N/X(米)',dictCode:''})
-        fieldList.push({type:'string',value:'coordinateB',text:'E坐标E/Y(米)',dictCode:''})
-        fieldList.push({type:'string',value:'territorialId',text:'属地供电所id',dictCode:''})
+        fieldList.push({type:'string',value:'territorialId',text:'属地供电所',dictCode:''})
         fieldList.push({type:'string',value:'constructionUnit',text:'施单位（全称）',dictCode:''})
         fieldList.push({type:'string',value:'overseerUnit',text:'监理单位（全称）',dictCode:''})
         this.superFieldList = fieldList

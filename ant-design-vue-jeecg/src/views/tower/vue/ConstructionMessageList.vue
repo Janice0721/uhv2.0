@@ -82,6 +82,7 @@
 
   import { JeecgListMixin } from '@/mixins/JeecgListMixin'
   import ConstructionMessageModal from './modules/ConstructionMessageModal'
+  import { getAction } from '@/api/manage'
 
   export default {
     name: "ConstructionMessageList",
@@ -113,124 +114,124 @@
         disableMixinCreated:true,
         // 表头
         columns: [
-          {
-            title: '#',
-            dataIndex: '',
-            key:'rowIndex',
-            width:60,
-            align:"center",
-            customRender:function (t,r,index) {
-              return parseInt(index)+1;
-            }
-          },
-          {
-            title:'杆塔id',
-            align:"center",
-            dataIndex: 'towerId'
-          },
-          {
-            title:'施工分包单位',
-            align:"center",
-            dataIndex: 'subcontractor'
-          },
-          {
-            title:'计划开工时间',
-            align:"center",
-            dataIndex: 'planStartTime',
-            customRender:function (text) {
-              return !text?"":(text.length>10?text.substr(0,10):text)
-            }
-          },
-          {
-            title:'实际开工时间',
-            align:"center",
-            dataIndex: 'actualStartTime',
-            customRender:function (text) {
-              return !text?"":(text.length>10?text.substr(0,10):text)
-            }
-          },
-          {
-            title:'是否完成复测分坑',
-            align:"center",
-            dataIndex: 'repeatPit'
-          },
-          {
-            title:'是否完成放样',
-            align:"center",
-            dataIndex: 'lofting'
-          },
-          {
-            title:'是否完成基础开挖',
-            align:"center",
-            dataIndex: 'excavate'
-          },
-          {
-            title:'是否完成基础浇筑',
-            align:"center",
-            dataIndex: 'pouring'
-          },
-          {
-            title:'是否完成组塔',
-            align:"center",
-            dataIndex: 'groupTower'
-          },
-          {
-            title:'当前状态',
-            align:"center",
-            dataIndex: 'status'
-          },
-          {
-            title:'计划竣工时间',
-            align:"center",
-            dataIndex: 'planOverTime',
-            customRender:function (text) {
-              return !text?"":(text.length>10?text.substr(0,10):text)
-            }
-          },
-          {
-            title:'实际竣工时间',
-            align:"center",
-            dataIndex: 'actualOverTime',
-            customRender:function (text) {
-              return !text?"":(text.length>10?text.substr(0,10):text)
-            }
-          },
-          {
-            title:'是否受阻',
-            align:"center",
-            dataIndex: 'blockStatus'
-          },
-          {
-            title:'受阻原因分类',
-            align:"center",
-            dataIndex: 'blockType'
-          },
-          {
-            title:'具体问题',
-            align:"center",
-            dataIndex: 'blockDetail'
-          },
-          {
-            title:'其他需要说明的问题',
-            align:"center",
-            dataIndex: 'otherIssue'
-          },
-          {
-            title:'填报时间',
-            align:"center",
-            dataIndex: 'reportTime',
-            customRender:function (text) {
-              return !text?"":(text.length>10?text.substr(0,10):text)
-            }
-          },
-          {
-            title: '操作',
-            dataIndex: 'action',
-            align:"center",
-            fixed:"right",
-            width:147,
-            scopedSlots: { customRender: 'action' },
-          }
+          // {
+          //   title: '#',
+          //   dataIndex: '',
+          //   key:'rowIndex',
+          //   width:60,
+          //   align:"center",
+          //   customRender:function (t,r,index) {
+          //     return parseInt(index)+1;
+          //   }
+          // },
+          // {
+          //   title:'杆塔id',
+          //   align:"center",
+          //   dataIndex: 'towerId'
+          // },
+          // {
+          //   title:'施工分包单位',
+          //   align:"center",
+          //   dataIndex: 'subcontractor'
+          // },
+          // {
+          //   title:'计划开工时间',
+          //   align:"center",
+          //   dataIndex: 'planStartTime',
+          //   customRender:function (text) {
+          //     return !text?"":(text.length>10?text.substr(0,10):text)
+          //   }
+          // },
+          // {
+          //   title:'实际开工时间',
+          //   align:"center",
+          //   dataIndex: 'actualStartTime',
+          //   customRender:function (text) {
+          //     return !text?"":(text.length>10?text.substr(0,10):text)
+          //   }
+          // },
+          // {
+          //   title:'是否完成复测分坑',
+          //   align:"center",
+          //   dataIndex: 'repeatPit'
+          // },
+          // {
+          //   title:'是否完成放样',
+          //   align:"center",
+          //   dataIndex: 'lofting'
+          // },
+          // {
+          //   title:'是否完成基础开挖',
+          //   align:"center",
+          //   dataIndex: 'excavate'
+          // },
+          // {
+          //   title:'是否完成基础浇筑',
+          //   align:"center",
+          //   dataIndex: 'pouring'
+          // },
+          // {
+          //   title:'是否完成组塔',
+          //   align:"center",
+          //   dataIndex: 'groupTower'
+          // },
+          // {
+          //   title:'当前状态',
+          //   align:"center",
+          //   dataIndex: 'status'
+          // },
+          // {
+          //   title:'计划竣工时间',
+          //   align:"center",
+          //   dataIndex: 'planOverTime',
+          //   customRender:function (text) {
+          //     return !text?"":(text.length>10?text.substr(0,10):text)
+          //   }
+          // },
+          // {
+          //   title:'实际竣工时间',
+          //   align:"center",
+          //   dataIndex: 'actualOverTime',
+          //   customRender:function (text) {
+          //     return !text?"":(text.length>10?text.substr(0,10):text)
+          //   }
+          // },
+          // {
+          //   title:'是否受阻',
+          //   align:"center",
+          //   dataIndex: 'blockStatus'
+          // },
+          // {
+          //   title:'受阻原因分类',
+          //   align:"center",
+          //   dataIndex: 'blockType'
+          // },
+          // {
+          //   title:'具体问题',
+          //   align:"center",
+          //   dataIndex: 'blockDetail'
+          // },
+          // {
+          //   title:'其他需要说明的问题',
+          //   align:"center",
+          //   dataIndex: 'otherIssue'
+          // },
+          // {
+          //   title:'填报时间',
+          //   align:"center",
+          //   dataIndex: 'reportTime',
+          //   customRender:function (text) {
+          //     return !text?"":(text.length>10?text.substr(0,10):text)
+          //   }
+          // },
+          // {
+          //   title: '操作',
+          //   dataIndex: 'action',
+          //   align:"center",
+          //   fixed:"right",
+          //   width:147,
+          //   scopedSlots: { customRender: 'action' },
+          // }
         ],
         url: {
           list: "/tower/tower/listConstructionMessageByMainId",
@@ -246,6 +247,30 @@
     },
     created() {
       this.getSuperFieldList();
+      getAction('/GetColumns?table_name=construction_message').then(res=>{
+        var new_columns=res;
+        this.columns.push({  
+           title: '#',
+            dataIndex: '',
+            key:'rowIndex',
+            width: 60,
+            align:"center",
+            customRender:function (t,r,index) { 
+              return parseInt(index)+1; }
+              })
+        for(var i=0;i<new_columns.length;i++){
+          // console.log(new_columns[i])
+          this.columns.push(new_columns[i]);
+        }
+        this.columns.push({
+          title: '操作',
+          dataIndex: 'action',
+          align:"center",
+          fixed:"right",
+          width:147,
+          scopedSlots: { customRender: 'action' } 
+          })
+        })
     },
     computed: {
       importExcelUrl(){
@@ -263,9 +288,7 @@
         fieldList.push({type:'string',value:'number',text:'杆塔号',dictCode:''})
         fieldList.push({type:'string',value:'address',text:'塔地址',dictCode:''})
         fieldList.push({type:'string',value:'ascriptionTown',text:'交界塔基归属乡镇',dictCode:''})
-        fieldList.push({type:'string',value:'coordinateN',text:'N坐标N/X(米)',dictCode:''})
-        fieldList.push({type:'string',value:'coordinateB',text:'E坐标E/Y(米)',dictCode:''})
-        fieldList.push({type:'string',value:'territorialId',text:'属地供电所id',dictCode:''})
+        fieldList.push({type:'string',value:'territorialId',text:'属地供电所',dictCode:''})
         fieldList.push({type:'string',value:'constructionUnit',text:'施单位（全称）',dictCode:''})
         fieldList.push({type:'string',value:'overseerUnit',text:'监理单位（全称）',dictCode:''})
         this.superFieldList = fieldList

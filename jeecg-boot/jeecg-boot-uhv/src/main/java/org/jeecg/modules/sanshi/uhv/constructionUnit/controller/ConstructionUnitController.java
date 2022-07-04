@@ -101,8 +101,10 @@ public class ConstructionUnitController extends JeecgController<ConstructionUnit
 	@AutoLog(value = "施工单位-编辑")
 	@ApiOperation(value="施工单位-编辑", notes="施工单位-编辑")
 	@PutMapping(value = "/edit")
-	public Result<?> edit(@RequestBody ConstructionUnit constructionUnit) {
-		constructionUnitService.updateById(constructionUnit);
+	public Result<?> edit(@RequestBody String constructionUnit,@RequestParam("table_name")String table_name) throws SQLException {
+//		constructionUnitService.updateById(constructionUnit);
+		AddFunc addFunc=new AddFunc();
+		addFunc.UPDATE(constructionUnit,table_name);
 		return Result.OK("编辑成功!");
 	}
 	

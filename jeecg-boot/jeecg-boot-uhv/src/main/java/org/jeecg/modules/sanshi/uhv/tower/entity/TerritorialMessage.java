@@ -17,7 +17,7 @@ import java.io.UnsupportedEncodingException;
 /**
  * @Description: 属地供电所填报
  * @Author: jeecg-boot
- * @Date:   2022-06-26
+ * @Date:   2022-07-03
  * @Version: V1.0
  */
 @Data
@@ -49,6 +49,9 @@ public class TerritorialMessage implements Serializable {
 	/**所属部门*/
     @ApiModelProperty(value = "所属部门")
     private java.lang.String sysOrgCode;
+    /**杆塔号*/
+    @ApiModelProperty(value = "杆塔号")
+    private java.lang.String towerNumber;
 	/**杆塔id*/
     @ApiModelProperty(value = "杆塔id")
     private java.lang.String towerId;

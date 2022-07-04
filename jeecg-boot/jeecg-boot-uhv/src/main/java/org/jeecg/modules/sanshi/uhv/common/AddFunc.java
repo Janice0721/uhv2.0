@@ -27,6 +27,7 @@ public class AddFunc {
         }
     }
     public void INSERT(String json,String table_name) throws SQLException {
+        json=CamelCaseUtil.toUnderlineCase(json);
         Map<String,String> map = JSON.parseObject(json, Map.class);
         String id= String.valueOf(UUID.randomUUID());
         String create_by="admin";
@@ -46,5 +47,29 @@ public class AddFunc {
         String sql = s+s1+s2+s3+s4;
         PreparedStatement preparedStatement = conn.prepareStatement(sql);
         preparedStatement.execute(sql);
+    }
+    public void UPDATE(String json,String table_name) throws SQLException {
+        json=CamelCaseUtil.toUnderlineCase(json);
+        Map<String, String> map = JSON.parseObject(json, Map.class);
+        System.out.println(map);
+        String id=map.get("id");
+        String update_by="admin";
+        String update_time= DateTime.now().toString();
+        map.put("update_by",update_by);
+        map.put("update_time",update_time);
+        System.out.println(map);
+        String head ="update "+table_name+" set ";
+        String s="";
+        for(String key:map.keySet()){
+            if(key=="id") continue;
+            String temp=map.get(key);
+            s+=key+"='"+temp+"',";
+        }
+        s = s.substring(0, s.length() - 1);
+        String tail="where id='"+id+"'";
+        String sql=head+s+tail;
+        PreparedStatement preparedStatement = conn.prepareStatement(sql);
+        preparedStatement.execute(sql);
+
     }
 }

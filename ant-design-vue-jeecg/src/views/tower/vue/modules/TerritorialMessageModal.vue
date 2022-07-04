@@ -10,14 +10,14 @@
     cancelText="关闭">
     <a-spin :spinning="confirmLoading">
       <a-form-model ref="form" :model="model" :rules="validatorRules">
-        <a-row v-for="form in formList">
-          <a-col :span="24">
-            <a-form-model-item :label="form.text" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="form.key">
+       <a-row v-for="form in formList">
+          <a-col :span="24" v-if="form.key != 'towerId'">
+            <a-form-model-item :label="form.text" :labelCol="labelCol" :wrapperCol="wrapperCol" :prop="form.key">
               <a-input v-model="model[form.key]" :placeholder="'请输入'+form.text"  ></a-input>
             </a-form-model-item>
           </a-col>
-         
-        </a-row>
+         </a-row>
+
       </a-form-model>
     </a-spin>
   </j-modal>
@@ -25,7 +25,7 @@
 
 <script>
 
-  import { httpAction ,getAction} from '@/api/manage'
+  import { httpAction,getAction } from '@/api/manage'
   import { validateDuplicateValue } from '@/utils/util'
 
   export default {
@@ -61,23 +61,17 @@
         },
         url: {
           add: "/tower/tower/addTerritorialMessage?table_name=territorial_message",
-          edit: "/tower/tower/editTerritorialMessage",
+          edit: "/tower/tower/editTerritorialMessage?table_name=territorial_message",
         }
 
       }
     },
     created () {
-    //备份model原始值
-      // this.modelDefault = JSON.parse(JSON.stringify(this.model));
-       getAction('/getFormList?table_name=territorial_message').then(res=>{
+      getAction('/getFormList?table_name=territorial_message',).then(res=>{
         this.formList=res;
       })
-      // let params = {}
-      //   for(let obj of this.formList){
-      //     params[obj.key] = '';
-      //   }
-      //   this.model = Object.assign({}, params);
-      this.modelDefault = JSON.parse(JSON.stringify(this.model))
+    //备份model原始值
+      this.modelDefault = JSON.parse(JSON.stringify(this.model));
     },
     methods: {
       add () {

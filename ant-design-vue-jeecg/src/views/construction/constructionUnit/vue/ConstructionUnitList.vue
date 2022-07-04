@@ -99,6 +99,7 @@
   import { mixinDevice } from '@/utils/mixin'
   import { JeecgListMixin } from '@/mixins/JeecgListMixin'
   import ConstructionUnitModal from './modules/ConstructionUnitModal'
+  import { httpAction, getAction } from '@/api/manage'
 
   export default {
     name: 'ConstructionUnitList',
@@ -111,34 +112,39 @@
         description: '施工单位管理页面',
         // 表头
         columns: [
-          {
-            title: '#',
-            dataIndex: '',
-            key:'rowIndex',
-            width:60,
-            align:"center",
-            customRender:function (t,r,index) {
-              return parseInt(index)+1;
-            }
-          },
-          {
-            title:'施工单位(全称)',
-            align:"center",
-            dataIndex: 'name'
-          },
-          {
-            title:'详细信息',
-            align:"center",
-            dataIndex: 'detail'
-          },
-          {
-            title: '操作',
-            dataIndex: 'action',
-            align:"center",
-            fixed:"right",
-            width:147,
-            scopedSlots: { customRender: 'action' }
-          }
+          // {
+          //   title: '#',
+          //   dataIndex: '',
+          //   key:'rowIndex',
+          //   width:60,
+          //   align:"center",
+          //   customRender:function (t,r,index) {
+          //     return parseInt(index)+1;
+          //   }
+          // },
+          // {
+          //   title:'施工单位(全称)',
+          //   align:"center",
+          //   dataIndex: "name"
+          // },
+          // {
+          //   title:'详细信息',
+          //   align:"center",
+          //   dataIndex: "detail"
+          // },
+          // {
+          //   title:'测试字段',
+          //   align:"center",
+          //   dataIndex: 'test'
+          // },
+          // {
+          //   title: '操作',
+          //   dataIndex: 'action',
+          //   align:"center",
+          //   fixed:"right",
+          //   width:147,
+          //   scopedSlots: { customRender: 'action' }
+          // }
         ],
         url: {
           list: "/constructionUnit/constructionUnit/list",
@@ -154,6 +160,31 @@
     },
     created() {
     this.getSuperFieldList();
+     getAction('/GetColumns?table_name=construction_unit').then(res=>{
+        var new_columns=res;
+        this.columns.push({  
+           title: '#',
+            dataIndex: '',
+            key:'rowIndex',
+            width: 60,
+            align:"center",
+            customRender:function (t,r,index) { 
+              return parseInt(index)+1; }
+              })
+        for(var i=0;i<new_columns.length;i++){
+          // console.log(new_columns[i])
+          this.columns.push(new_columns[i]);
+        }
+        this.columns.push({
+          title: '操作',
+          dataIndex: 'action',
+          align:"center",
+          fixed:"right",
+          width:147,
+          scopedSlots: { customRender: 'action' } 
+          })
+        })
+       
     },
     computed: {
       importExcelUrl: function(){
@@ -167,9 +198,12 @@
         let fieldList=[];
         fieldList.push({type:'string',value:'name',text:'施工单位(全称)',dictCode:''})
         fieldList.push({type:'string',value:'detail',text:'详细信息',dictCode:''})
+        // fieldList.push({type:'string',value:'test',text:'测试字段',dictCode:''})
         this.superFieldList = fieldList
       }
+     
     }
+    
   }
 </script>
 <style scoped>

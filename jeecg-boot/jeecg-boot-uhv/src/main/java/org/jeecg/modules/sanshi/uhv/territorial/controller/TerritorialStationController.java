@@ -101,8 +101,10 @@ public class TerritorialStationController extends JeecgController<TerritorialSta
 	@AutoLog(value = "属地供电所-编辑")
 	@ApiOperation(value="属地供电所-编辑", notes="属地供电所-编辑")
 	@PutMapping(value = "/edit")
-	public Result<?> edit(@RequestBody TerritorialStation territorialStation) {
-		territorialStationService.updateById(territorialStation);
+	public Result<?> edit(@RequestBody String territorialStation,@RequestParam("table_name")String table_name) throws SQLException {
+//		territorialStationService.updateById(territorialStation);
+		AddFunc addFunc=new AddFunc();
+		addFunc.UPDATE(territorialStation,table_name);
 		return Result.OK("编辑成功!");
 	}
 	

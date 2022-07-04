@@ -50,6 +50,38 @@ public class GetTableFieldController {
             e.printStackTrace();
         }
         String result = JSON.toJSONString(listMap);
+        result = CamelCaseUtil._toUpper(result);
+        System.out.println(result);
+        return result;
+    }
+
+    @RequestMapping("/GetColumns")
+    public String GetColumns(@RequestParam("table_name")String table_name) {
+        List<Map<String, String>> listMap = new ArrayList<>();
+        String[] str = {"id", "createBy", "createTime", "updateBy", "updateTime", "sysOrgCode","towerId"};
+        List<String> list = Arrays.asList(str);
+        try {
+            DatabaseMetaData metaData = conn.getMetaData();
+            ResultSet columns = metaData.getColumns(null, null, table_name, "%");
+            while (columns.next()) {
+                Map<String, String> map = new HashMap<>();
+                String column_name = columns.getString("COLUMN_NAME");
+                column_name=CamelCaseUtil._toUpper(column_name);
+                String remarks = columns.getString("REMARKS");
+//                String type = columns.getString("TYPE_NAME");
+                if (list.contains(column_name)) {
+                    continue;
+                }
+                map.put("dataIndex", column_name);
+                map.put("title", remarks);
+                map.put("align", "center");
+                listMap.add(map);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String result = JSON.toJSONString(listMap);
         System.out.println(result);
         return result;
     }

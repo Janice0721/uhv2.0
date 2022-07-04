@@ -116,45 +116,44 @@
         description: '塔杆信息管理页面',
         // 表头
         columns: [
-          {
-            title:'杆塔号',
-            align:"center",
-            dataIndex: 'number'
-          },
-          {
-            title:'塔地址',
-            align:"center",
-            dataIndex: 'address'
-          },
-          {
-            title:'交界塔基归属乡镇',
-            align:"center",
-            dataIndex: 'ascriptionTown'
-          },
-          
-          {
-            title:'属地供电所',
-            align:"center",
-            dataIndex: 'territorialId'
-          },
-          {
-            title:'施工单位（全称）',
-            align:"center",
-            dataIndex: 'constructionUnit'
-          },
-          {
-            title:'监理单位（全称）',
-            align:"center",
-            dataIndex: 'overseerUnit'
-          },
-          {
-            title: '操作',
-            dataIndex: 'action',
-            align:"center",
-            fixed:"right",
-            width:147,
-            scopedSlots: { customRender: 'action' },
-          }
+          // {
+          //   title:'杆塔号',
+          //   align:"center",
+          //   dataIndex: 'number'
+          // },
+          // {
+          //   title:'塔地址',
+          //   align:"center",
+          //   dataIndex: 'address'
+          // },
+          // {
+          //   title:'交界塔基归属乡镇',
+          //   align:"center",
+          //   dataIndex: 'ascriptionTown'
+          // },
+          // {
+          //   title:'属地供电所',
+          //   align:"center",
+          //   dataIndex: 'territorialId'
+          // },
+          // {
+          //   title:'施单位（全称）',
+          //   align:"center",
+          //   dataIndex: 'constructionUnit'
+          // },
+          // {
+          //   title:'监理单位（全称）',
+          //   align:"center",
+          //   dataIndex: 'overseerUnit'
+          // },
+          // {
+          //   title: '操作',
+          //   dataIndex: 'action',
+          //   align:"center",
+          //   fixed:"right",
+          //   width:147,
+          //   scopedSlots: { customRender: 'action' },
+          // }
         ],
         url: {
           list: "/tower/tower/list",
@@ -183,6 +182,30 @@
     },
     created() {
       this.getSuperFieldList();
+       getAction('/GetColumns?table_name=tower').then(res=>{
+        var new_columns=res;
+        this.columns.push({  
+           title: '#',
+            dataIndex: '',
+            key:'rowIndex',
+            width: 60,
+            align:"center",
+            customRender:function (t,r,index) { 
+              return parseInt(index)+1; }
+              })
+        for(var i=0;i<new_columns.length;i++){
+          // console.log(new_columns[i])
+          this.columns.push(new_columns[i]);
+        }
+        this.columns.push({
+          title: '操作',
+          dataIndex: 'action',
+          align:"center",
+          fixed:"right",
+          width:147,
+          scopedSlots: { customRender: 'action' } 
+          })
+        })
     },
     computed: {
       importExcelUrl: function(){
@@ -239,9 +262,7 @@
         fieldList.push({type:'string',value:'number',text:'杆塔号',dictCode:''})
         fieldList.push({type:'string',value:'address',text:'塔地址',dictCode:''})
         fieldList.push({type:'string',value:'ascriptionTown',text:'交界塔基归属乡镇',dictCode:''})
-        fieldList.push({type:'string',value:'coordinateN',text:'N坐标N/X(米)',dictCode:''})
-        fieldList.push({type:'string',value:'coordinateB',text:'E坐标E/Y(米)',dictCode:''})
-        fieldList.push({type:'string',value:'territorialId',text:'属地供电所id',dictCode:''})
+        fieldList.push({type:'string',value:'territorialId',text:'属地供电所',dictCode:''})
         fieldList.push({type:'string',value:'constructionUnit',text:'施单位（全称）',dictCode:''})
         fieldList.push({type:'string',value:'overseerUnit',text:'监理单位（全称）',dictCode:''})
         this.superFieldList = fieldList

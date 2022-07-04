@@ -43,7 +43,7 @@ import java.util.stream.Collectors;
  /**
  * @Description: 塔杆信息
  * @Author: jeecg-boot
- * @Date:   2022-06-26
+ * @Date:   2022-07-03
  * @Version: V1.0
  */
 @Api(tags="塔杆信息")
@@ -94,7 +94,6 @@ public class TowerController extends JeecgController<Tower, ITowerService> {
     @ApiOperation(value="塔杆信息-添加", notes="塔杆信息-添加")
     @PostMapping(value = "/add")
     public Result<?> add(@RequestBody String tower,@RequestParam("table_name")String table_name) throws SQLException {
-//        towerService.save(tower);
 		AddFunc addFunc=new AddFunc();
 		addFunc.INSERT(tower,table_name);
         return Result.OK("添加成功！");
@@ -108,8 +107,9 @@ public class TowerController extends JeecgController<Tower, ITowerService> {
     @AutoLog(value = "塔杆信息-编辑")
     @ApiOperation(value="塔杆信息-编辑", notes="塔杆信息-编辑")
     @PutMapping(value = "/edit")
-    public Result<?> edit(@RequestBody Tower tower) {
-        towerService.updateById(tower);
+    public Result<?> edit(@RequestBody String tower,@RequestParam("table_name")String table_name) throws SQLException {
+		AddFunc addFunc=new AddFunc();
+		addFunc.UPDATE(tower,table_name);
         return Result.OK("编辑成功!");
     }
 
@@ -186,6 +186,7 @@ public class TowerController extends JeecgController<Tower, ITowerService> {
 	@ApiOperation(value="属地供电所填报-添加", notes="属地供电所填报-添加")
 	@PostMapping(value = "/addTerritorialMessage")
 	public Result<?> addTerritorialMessage(@RequestBody String territorialMessage,@RequestParam("table_name")String table_name) throws SQLException {
+//		territorialMessageService.save(territorialMessage);
 		AddFunc addFunc=new AddFunc();
 		addFunc.INSERT(territorialMessage,table_name);
 		return Result.OK("添加成功！");
@@ -199,8 +200,10 @@ public class TowerController extends JeecgController<Tower, ITowerService> {
 	@AutoLog(value = "属地供电所填报-编辑")
 	@ApiOperation(value="属地供电所填报-编辑", notes="属地供电所填报-编辑")
 	@PutMapping(value = "/editTerritorialMessage")
-	public Result<?> editTerritorialMessage(@RequestBody TerritorialMessage territorialMessage) {
-		territorialMessageService.updateById(territorialMessage);
+	public Result<?> editTerritorialMessage(@RequestBody String territorialMessage,@RequestParam("table_name")String table_name) throws SQLException {
+//		territorialMessageService.updateById(territorialMessage);
+		AddFunc addFunc=new AddFunc();
+		addFunc.UPDATE(territorialMessage,table_name);
 		return Result.OK("编辑成功!");
 	}
 
@@ -328,6 +331,7 @@ public class TowerController extends JeecgController<Tower, ITowerService> {
 	@ApiOperation(value="施工填报-添加", notes="施工填报-添加")
 	@PostMapping(value = "/addConstructionMessage")
 	public Result<?> addConstructionMessage(@RequestBody String constructionMessage,@RequestParam("table_name")String table_name) throws SQLException {
+//		constructionMessageService.save(constructionMessage);
 		AddFunc addFunc=new AddFunc();
 		addFunc.INSERT(constructionMessage,table_name);
 		return Result.OK("添加成功！");
@@ -341,8 +345,10 @@ public class TowerController extends JeecgController<Tower, ITowerService> {
 	@AutoLog(value = "施工填报-编辑")
 	@ApiOperation(value="施工填报-编辑", notes="施工填报-编辑")
 	@PutMapping(value = "/editConstructionMessage")
-	public Result<?> editConstructionMessage(@RequestBody ConstructionMessage constructionMessage) {
-		constructionMessageService.updateById(constructionMessage);
+	public Result<?> editConstructionMessage(@RequestBody String constructionMessage,@RequestParam("table_name")String table_name) throws SQLException {
+//		constructionMessageService.updateById(constructionMessage);
+		AddFunc addFunc=new AddFunc();
+		addFunc.UPDATE(constructionMessage,table_name);
 		return Result.OK("编辑成功!");
 	}
 
@@ -419,7 +425,6 @@ public class TowerController extends JeecgController<Tower, ITowerService> {
 			 params.setHeadRows(1);
 			 params.setNeedSave(true);
 			 try {
-
 				 List<ConstructionMessage> list = ExcelImportUtil.importExcel(file.getInputStream(), ConstructionMessage.class, params);
 				 for (ConstructionMessage temp : list) {
                     temp.setTowerId(mainId);

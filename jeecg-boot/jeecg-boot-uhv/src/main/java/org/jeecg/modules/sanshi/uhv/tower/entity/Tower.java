@@ -17,7 +17,7 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * @Description: 塔杆信息
  * @Author: jeecg-boot
- * @Date:   2022-06-26
+ * @Date:   2022-07-03
  * @Version: V1.0
  */
 @Data
@@ -69,9 +69,9 @@ public class Tower implements Serializable {
     @Excel(name = "E坐标E/Y(米)", width = 15)
     @ApiModelProperty(value = "E坐标E/Y(米)")
     private java.lang.String coordinateB;
-	/**属地供电所id*/
-    @Excel(name = "属地供电所id", width = 15)
-    @ApiModelProperty(value = "属地供电所id")
+	/**属地供电所*/
+    @Excel(name = "属地供电所", width = 15)
+    @ApiModelProperty(value = "属地供电所")
     private java.lang.String territorialId;
 	/**施单位（全称）*/
     @Excel(name = "施单位（全称）", width = 15)

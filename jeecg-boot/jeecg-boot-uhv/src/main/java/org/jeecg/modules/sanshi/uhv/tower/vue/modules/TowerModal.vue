@@ -27,18 +27,8 @@
             </a-form-model-item>
           </a-col>
           <a-col :span="24">
-            <a-form-model-item label="N坐标N/X(米)" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="coordinateN">
-              <a-input v-model="model.coordinateN" placeholder="请输入N坐标N/X(米)" ></a-input>
-            </a-form-model-item>
-          </a-col>
-          <a-col :span="24">
-            <a-form-model-item label="E坐标E/Y(米)" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="coordinateB">
-              <a-input v-model="model.coordinateB" placeholder="请输入E坐标E/Y(米)" ></a-input>
-            </a-form-model-item>
-          </a-col>
-          <a-col :span="24">
-            <a-form-model-item label="属地供电所id" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="territorialId">
-              <a-input v-model="model.territorialId" placeholder="请输入属地供电所id" ></a-input>
+            <a-form-model-item label="属地供电所" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="territorialId">
+              <a-input v-model="model.territorialId" placeholder="请输入属地供电所" ></a-input>
             </a-form-model-item>
           </a-col>
           <a-col :span="24">

@@ -62,4 +62,8 @@ public class ConstructionUnit implements Serializable {
 	@Excel(name = "详细信息", width = 15)
     @ApiModelProperty(value = "详细信息")
     private String detail;
+    /**测试字段*/
+    @Excel(name = "测试字段", width = 15)
+    @ApiModelProperty(value = "测试字段")
+    private String test;
 }

@@ -54,7 +54,7 @@
         },
         url: {
           add: "/constructionUnit/constructionUnit/add?table_name=construction_unit",
-          edit: "/constructionUnit/constructionUnit/edit",
+          edit: "/constructionUnit/constructionUnit/edit?table_name=construction_unit",
           queryById: "/constructionUnit/constructionUnit/queryById"
         }
       }
@@ -82,6 +82,7 @@
          this.edit(this.modelDefault);
       },
       edit (record) {
+        console.log(record)
         // alert(Object.assign({}, record))
         this.model = Object.assign({}, record);
         // alert(this.model)

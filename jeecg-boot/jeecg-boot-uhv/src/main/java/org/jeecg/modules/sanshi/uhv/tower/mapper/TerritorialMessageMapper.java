@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Param;
 /**
  * @Description: 属地供电所填报
  * @Author: jeecg-boot
- * @Date:   2022-06-26
+ * @Date:   2022-07-03
  * @Version: V1.0
  */
 public interface TerritorialMessageMapper extends BaseMapper<TerritorialMessage> {

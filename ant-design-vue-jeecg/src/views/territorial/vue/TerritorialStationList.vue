@@ -99,6 +99,7 @@
   import { mixinDevice } from '@/utils/mixin'
   import { JeecgListMixin } from '@/mixins/JeecgListMixin'
   import TerritorialStationModal from './modules/TerritorialStationModal'
+  import { httpAction, getAction } from '@/api/manage'
 
   export default {
     name: 'TerritorialStationList',
@@ -111,34 +112,34 @@
         description: '属地供电所管理页面',
         // 表头
         columns: [
-          {
-            title: '#',
-            dataIndex: '',
-            key:'rowIndex',
-            width:60,
-            align:"center",
-            customRender:function (t,r,index) {
-              return parseInt(index)+1;
-            }
-          },
-          {
-            title:'属地供电所名称',
-            align:"center",
-            dataIndex: 'name'
-          },
-          {
-            title:'备注',
-            align:"center",
-            dataIndex: 'detail'
-          },
-          {
-            title: '操作',
-            dataIndex: 'action',
-            align:"center",
-            fixed:"right",
-            width:147,
-            scopedSlots: { customRender: 'action' }
-          }
+          // {
+          //   title: '#',
+          //   dataIndex: '',
+          //   key:'rowIndex',
+          //   width:60,
+          //   align:"center",
+          //   customRender:function (t,r,index) {
+          //     return parseInt(index)+1;
+          //   }
+          // },
+          // {
+          //   title:'属地供电所名称',
+          //   align:"center",
+          //   dataIndex: 'name'
+          // },
+          // {
+          //   title:'备注',
+          //   align:"center",
+          //   dataIndex: 'detail'
+          // },
+          // {
+          //   title: '操作',
+          //   dataIndex: 'action',
+          //   align:"center",
+          //   fixed:"right",
+          //   width:147,
+          //   scopedSlots: { customRender: 'action' }
+          // }
         ],
         url: {
           list: "/territorial/territorialStation/list",
@@ -154,6 +155,30 @@
     },
     created() {
     this.getSuperFieldList();
+    getAction('/GetColumns?table_name=territorial_station').then(res=>{
+        var new_columns=res;
+        this.columns.push({  
+           title: '#',
+            dataIndex: '',
+            key:'rowIndex',
+            width: 60,
+            align:"center",
+            customRender:function (t,r,index) { 
+              return parseInt(index)+1; }
+              })
+        for(var i=0;i<new_columns.length;i++){
+          // console.log(new_columns[i])
+          this.columns.push(new_columns[i]);
+        }
+        this.columns.push({
+          title: '操作',
+          dataIndex: 'action',
+          align:"center",
+          fixed:"right",
+          width:147,
+          scopedSlots: { customRender: 'action' } 
+          })
+        })
     },
     computed: {
       importExcelUrl: function(){

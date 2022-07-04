@@ -82,6 +82,7 @@
 
   import { JeecgListMixin } from '@/mixins/JeecgListMixin'
   import TerritorialMessageModal from './modules/TerritorialMessageModal'
+  import { getAction } from '../../../api/manage'
 
   export default {
     name: "TerritorialMessageList",
@@ -113,206 +114,206 @@
         disableMixinCreated:true,
         // 表头
         columns: [
-          {
-            title: '#',
-            dataIndex: '',
-            key:'rowIndex',
-            width:60,
-            align:"center",
-            customRender:function (t,r,index) {
-              return parseInt(index)+1;
-            }
-          },
-          {
-            title:'杆塔id',
-            align:"center",
-            dataIndex: 'towerId'
-          },
-          {
-            title:'塔基林木采伐证办理情况',
-            align:"center",
-            dataIndex: 'registration'
-          },
-          {
-            title:'与乡镇签订情况',
-            align:"center",
-            dataIndex: 'baseSignStatus'
-          },
-          {
-            title:'付款至乡镇情况',
-            align:"center",
-            dataIndex: 'basePayStatus'
-          },
-          {
-            title:'丈量到户',
-            align:"center",
-            dataIndex: 'acquisitionMeasureHome'
-          },
-          {
-            title:'与村民（承包人、经营人）签定情况',
-            align:"center",
-            dataIndex: 'acquisitionPeopleSign'
-          },
-          {
-            title:'付款至村民（承包人、经营人）情况',
-            align:"center",
-            dataIndex: 'acquisitionPeoplePay'
-          },
-          {
-            title:'村民（承包人、经营人）姓名',
-            align:"center",
-            dataIndex: 'acquisitionPeopleName'
-          },
-          {
-            title:'村民（承包人、经营人）电话',
-            align:"center",
-            dataIndex: 'acquisitionPeoplePhone'
-          },
-          {
-            title:'村民（承包人、经营人）用电户号',
-            align:"center",
-            dataIndex: 'acquisitionPeopleElectricity'
-          },
-          {
-            title:'塔基交地情况',
-            align:"center",
-            dataIndex: 'baseLandStatus'
-          },
-          {
-            title:'塔基未交地原因',
-            align:"center",
-            dataIndex: 'baseReasons'
-          },
-          {
-            title:'塔基是否清表',
-            align:"center",
-            dataIndex: 'baseClearTable'
-          },
-          {
-            title:'塔基计划交地时间',
-            align:"center",
-            dataIndex: 'basePlanTime',
-            customRender:function (text) {
-              return !text?"":(text.length>10?text.substr(0,10):text)
-            }
-          },
-          {
-            title:'塔基实际交地时间',
-            align:"center",
-            dataIndex: 'baseActualTime',
-            customRender:function (text) {
-              return !text?"":(text.length>10?text.substr(0,10):text)
-            }
-          },
-          {
-            title:'施工便道用地范围确认',
-            align:"center",
-            dataIndex: 'easyRange'
-          },
-          {
-            title:'便道签订情况',
-            align:"center",
-            dataIndex: 'easySignStatus'
-          },
-          {
-            title:'便道付款情况',
-            align:"center",
-            dataIndex: 'easyPayStatus'
-          },
-          {
-            title:'便道是否交地',
-            align:"center",
-            dataIndex: 'easyLandStatus'
-          },
-          {
-            title:'便道未交地原因',
-            align:"center",
-            dataIndex: 'easyReason'
-          },
-          {
-            title:'便道是否清表',
-            align:"center",
-            dataIndex: 'easyClearTable'
-          },
-          {
-            title:' 便道计划交地时间',
-            align:"center",
-            dataIndex: 'easyPlanTime',
-            customRender:function (text) {
-              return !text?"":(text.length>10?text.substr(0,10):text)
-            }
-          },
-          {
-            title:'便道实际交地时间',
-            align:"center",
-            dataIndex: 'easyActualTime',
-            customRender:function (text) {
-              return !text?"":(text.length>10?text.substr(0,10):text)
-            }
-          },
-          {
-            title:'牵张场签订情况',
-            align:"center",
-            dataIndex: 'stretchSignStatus'
-          },
-          {
-            title:'牵张场付款情况',
-            align:"center",
-            dataIndex: 'stretchPayStatus'
-          },
-          {
-            title:'牵张场交地情况',
-            align:"center",
-            dataIndex: 'stretchLandStatus'
-          },
-          {
-            title:'管线迁移',
-            align:"center",
-            dataIndex: 'pipeLineStatus'
-          },
-          {
-            title:'房屋拆迁',
-            align:"center",
-            dataIndex: 'houseStatus'
-          },
-          {
-            title:'是否受阻',
-            align:"center",
-            dataIndex: 'blockStatus'
-          },
-          {
-            title:'受阻原因分类',
-            align:"center",
-            dataIndex: 'blockReasonType'
-          },
-          {
-            title:'具体问题',
-            align:"center",
-            dataIndex: 'blockDetail'
-          },
-          {
-            title:'是否亮红灯',
-            align:"center",
-            dataIndex: 'lightStatus'
-          },
-          {
-            title:'亮灯天数',
-            align:"center",
-            dataIndex: 'lightDay'
-          },
-          {
-            title:'填报时间',
-            align:"center",
-            dataIndex: 'fillingTime'
-          },
-          {
-            title: '操作',
-            dataIndex: 'action',
-            align:"center",
-            fixed:"right",
-            width:147,
-            scopedSlots: { customRender: 'action' },
-          }
+          // {
+          //   title: '#',
+          //   dataIndex: '',
+          //   key:'rowIndex',
+          //   width:60,
+          //   align:"center",
+          //   customRender:function (t,r,index) {
+          //     return parseInt(index)+1;
+          //   }
+          // },
+          // {
+          //   title:'杆塔号',
+          //   align:"center",
+          //   dataIndex: 'towerNumber'
+          // },
+          // {
+          //   title:'塔基林木采伐证办理情况',
+          //   align:"center",
+          //   dataIndex: 'registration'
+          // },
+          // {
+          //   title:'与乡镇签订情况',
+          //   align:"center",
+          //   dataIndex: 'baseSignStatus'
+          // },
+          // {
+          //   title:'付款至乡镇情况',
+          //   align:"center",
+          //   dataIndex: 'basePayStatus'
+          // },
+          // {
+          //   title:'丈量到户',
+          //   align:"center",
+          //   dataIndex: 'acquisitionMeasureHome'
+          // },
+          // {
+          //   title:'与村民（承包人、经营人）签定情况',
+          //   align:"center",
+          //   dataIndex: 'acquisitionPeopleSign'
+          // },
+          // {
+          //   title:'付款至村民（承包人、经营人）情况',
+          //   align:"center",
+          //   dataIndex: 'acquisitionPeoplePay'
+          // },
+          // {
+          //   title:'村民（承包人、经营人）姓名',
+          //   align:"center",
+          //   dataIndex: 'acquisitionPeopleName'
+          // },
+          // {
+          //   title:'村民（承包人、经营人）电话',
+          //   align:"center",
+          //   dataIndex: 'acquisitionPeoplePhone'
+          // },
+          // {
+          //   title:'村民（承包人、经营人）用电户号',
+          //   align:"center",
+          //   dataIndex: 'acquisitionPeopleElectricity'
+          // },
+          // {
+          //   title:'塔基交地情况',
+          //   align:"center",
+          //   dataIndex: 'baseLandStatus'
+          // },
+          // {
+          //   title:'塔基未交地原因',
+          //   align:"center",
+          //   dataIndex: 'baseReasons'
+          // },
+          // {
+          //   title:'塔基是否清表',
+          //   align:"center",
+          //   dataIndex: 'baseClearTable'
+          // },
+          // {
+          //   title:'塔基计划交地时间',
+          //   align:"center",
+          //   dataIndex: 'basePlanTime',
+          //   customRender:function (text) {
+          //     return !text?"":(text.length>10?text.substr(0,10):text)
+          //   }
+          // },
+          // {
+          //   title:'塔基实际交地时间',
+          //   align:"center",
+          //   dataIndex: 'baseActualTime',
+          //   customRender:function (text) {
+          //     return !text?"":(text.length>10?text.substr(0,10):text)
+          //   }
+          // },
+          // {
+          //   title:'施工便道用地范围确认',
+          //   align:"center",
+          //   dataIndex: 'easyRange'
+          // },
+          // {
+          //   title:'便道签订情况',
+          //   align:"center",
+          //   dataIndex: 'easySignStatus'
+          // },
+          // {
+          //   title:'便道付款情况',
+          //   align:"center",
+          //   dataIndex: 'easyPayStatus'
+          // },
+          // {
+          //   title:'便道是否交地',
+          //   align:"center",
+          //   dataIndex: 'easyLandStatus'
+          // },
+          // {
+          //   title:'便道未交地原因',
+          //   align:"center",
+          //   dataIndex: 'easyReason'
+          // },
+          // {
+          //   title:'便道是否清表',
+          //   align:"center",
+          //   dataIndex: 'easyClearTable'
+          // },
+          // {
+          //   title:' 便道计划交地时间',
+          //   align:"center",
+          //   dataIndex: 'easyPlanTime',
+          //   customRender:function (text) {
+          //     return !text?"":(text.length>10?text.substr(0,10):text)
+          //   }
+          // },
+          // {
+          //   title:'便道实际交地时间',
+          //   align:"center",
+          //   dataIndex: 'easyActualTime',
+          //   customRender:function (text) {
+          //     return !text?"":(text.length>10?text.substr(0,10):text)
+          //   }
+          // },
+          // {
+          //   title:'牵张场签订情况',
+          //   align:"center",
+          //   dataIndex: 'stretchSignStatus'
+          // },
+          // {
+          //   title:'牵张场付款情况',
+          //   align:"center",
+          //   dataIndex: 'stretchPayStatus'
+          // },
+          // {
+          //   title:'牵张场交地情况',
+          //   align:"center",
+          //   dataIndex: 'stretchLandStatus'
+          // },
+          // {
+          //   title:'管线迁移',
+          //   align:"center",
+          //   dataIndex: 'pipeLineStatus'
+          // },
+          // {
+          //   title:'房屋拆迁',
+          //   align:"center",
+          //   dataIndex: 'houseStatus'
+          // },
+          // {
+          //   title:'是否受阻',
+          //   align:"center",
+          //   dataIndex: 'blockStatus'
+          // },
+          // {
+          //   title:'受阻原因分类',
+          //   align:"center",
+          //   dataIndex: 'blockReasonType'
+          // },
+          // {
+          //   title:'具体问题',
+          //   align:"center",
+          //   dataIndex: 'blockDetail'
+          // },
+          // {
+          //   title:'是否亮红灯',
+          //   align:"center",
+          //   dataIndex: 'lightStatus'
+          // },
+          // {
+          //   title:'亮灯天数',
+          //   align:"center",
+          //   dataIndex: 'lightDay'
+          // },
+          // {
+          //   title:'填报时间',
+          //   align:"center",
+          //   dataIndex: 'fillingTime'
+          // },
+          // {
+          //   title: '操作',
+          //   dataIndex: 'action',
+          //   align:"center",
+          //   fixed:"right",
+          //   width:147,
+          //   scopedSlots: { customRender: 'action' },
+          // }
         ],
         url: {
           list: "/tower/tower/listTerritorialMessageByMainId",
@@ -328,6 +329,30 @@
     },
     created() {
       this.getSuperFieldList();
+      getAction('/GetColumns?table_name=territorial_message').then(res=>{
+        var new_columns=res;
+        this.columns.push({  
+           title: '#',
+            dataIndex: '',
+            key:'rowIndex',
+            width: 60,
+            align:"center",
+            customRender:function (t,r,index) { 
+              return parseInt(index)+1; }
+              })
+        for(var i=0;i<new_columns.length;i++){
+          // console.log(new_columns[i])
+          this.columns.push(new_columns[i]);
+        }
+        this.columns.push({
+          title: '操作',
+          dataIndex: 'action',
+          align:"center",
+          fixed:"right",
+          width:147,
+          scopedSlots: { customRender: 'action' } 
+          })
+        })
     },
     computed: {
       importExcelUrl(){
@@ -345,9 +370,7 @@
         fieldList.push({type:'string',value:'number',text:'杆塔号',dictCode:''})
         fieldList.push({type:'string',value:'address',text:'塔地址',dictCode:''})
         fieldList.push({type:'string',value:'ascriptionTown',text:'交界塔基归属乡镇',dictCode:''})
-        fieldList.push({type:'string',value:'coordinateN',text:'N坐标N/X(米)',dictCode:''})
-        fieldList.push({type:'string',value:'coordinateB',text:'E坐标E/Y(米)',dictCode:''})
-        fieldList.push({type:'string',value:'territorialId',text:'属地供电所id',dictCode:''})
+        fieldList.push({type:'string',value:'territorialId',text:'属地供电所',dictCode:''})
         fieldList.push({type:'string',value:'constructionUnit',text:'施单位（全称）',dictCode:''})
         fieldList.push({type:'string',value:'overseerUnit',text:'监理单位（全称）',dictCode:''})
         this.superFieldList = fieldList
